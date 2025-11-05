@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+body {
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(37, 99, 235, 0.25), transparent 60%),
+              radial-gradient(900px 700px at 100% 10%, rgba(99, 102, 241, 0.25), transparent 60%),
+              linear-gradient(135deg, #0b1220 0%, #0f1a2e 40%, #0a1222 100%);
+  color: #e5e7eb;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+.glass-card {
+  background-color: rgba(12, 18, 32, 0.65);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.35), 0 24px 48px -16px rgba(2, 6, 23, 0.55);
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #8b5cf6 100%);
+  color: white;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0.8rem 1.9rem;
+  border-radius: 0.9rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
+}
+
+.gradient-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
+}
+
+.heading-font {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Scrollable multi-section dashboard */
+.dashboard-scroll {
+  scroll-behavior: smooth;
+}
+.dashboard-section {
+  min-height: 100vh;
+  scroll-margin-top: 80px;
+}
+
+/* Dark input */
+.input-dark {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: #e5e7eb;
+}
+.input-dark::placeholder { color: #94a3b8; }
+.input-dark:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
