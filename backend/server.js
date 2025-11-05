@@ -7,6 +7,7 @@ import investmentRoutes from './routes/investmentRoutes.js';
 import taxRoutes from './routes/taxRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
+import walletRoutes from './routes/walletRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/api/income', incomeRoutes);
 app.use('/api/investments', investmentRoutes);
 app.use('/api/tax', taxRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/wallet', walletRoutes);
 
 // Error handling middleware
 app.use(notFound);

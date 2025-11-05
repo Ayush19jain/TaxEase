@@ -10,6 +10,7 @@ const Sidebar = () => {
     { path: '/', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/ai-assistant', icon: Sparkles, label: 'AI Assistant' },
     { path: '/investments', icon: Wallet, label: 'Investments' },
+    { path: '/tax-wallet', icon: TrendingUp, label: 'Tax Wallet' },
     { path: '/reports', icon: FileText, label: 'Reports' },
     { path: '/history', icon: History, label: 'History' },
     { path: '/profile', icon: User, label: 'Profile' },

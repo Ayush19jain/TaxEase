@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { createIncome, updateIncome, getIncome } from '../services/api';
+import { useAuth } from './AuthContext';
 
 const TaxContext = createContext();
 
@@ -12,38 +13,45 @@ export const useTax = () => {
 };
 
 export const TaxProvider = ({ children }) => {
+  const { user } = useAuth();
   const [income, setIncome] = useState(1200000);
   const [regime, setRegime] = useState('new');
-  const [userId, setUserId] = useState('6904eb2f406cd712ed7a0dfd'); // Demo user ID from MongoDB
+  const userId = user?.id || user?._id || null;
   const [incomeRecordId, setIncomeRecordId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [walletDeductions, setWalletDeductions] = useState(0);
 
-  const calculateTax = (incomeAmount, taxRegime) => {
+  const calculateTax = (incomeAmount, taxRegime, deductions = 0) => {
+    // Apply deductions to taxable income (only for old regime)
+    const taxableIncome = taxRegime === 'old' ? Math.max(0, incomeAmount - deductions) : incomeAmount;
+    
     if (taxRegime === 'new') {
-      if (incomeAmount <= 300000) return 0;
-      if (incomeAmount <= 600000) return (incomeAmount - 300000) * 0.05;
-      if (incomeAmount <= 900000) return 15000 + (incomeAmount - 600000) * 0.10;
-      if (incomeAmount <= 1200000) return 45000 + (incomeAmount - 900000) * 0.15;
-      if (incomeAmount <= 1500000) return 90000 + (incomeAmount - 1200000) * 0.20;
-      return 150000 + (incomeAmount - 1500000) * 0.30;
+      if (taxableIncome <= 300000) return 0;
+      if (taxableIncome <= 600000) return (taxableIncome - 300000) * 0.05;
+      if (taxableIncome <= 900000) return 15000 + (taxableIncome - 600000) * 0.10;
+      if (taxableIncome <= 1200000) return 45000 + (taxableIncome - 900000) * 0.15;
+      if (taxableIncome <= 1500000) return 90000 + (taxableIncome - 1200000) * 0.20;
+      return 150000 + (taxableIncome - 1500000) * 0.30;
     } else {
-      // Old regime calculation
-      if (incomeAmount <= 250000) return 0;
-      if (incomeAmount <= 500000) return (incomeAmount - 250000) * 0.05;
-      if (incomeAmount <= 1000000) return 12500 + (incomeAmount - 500000) * 0.20;
-      return 112500 + (incomeAmount - 1000000) * 0.30;
+      // Old regime calculation with deductions
+      if (taxableIncome <= 250000) return 0;
+      if (taxableIncome <= 500000) return (taxableIncome - 250000) * 0.05;
+      if (taxableIncome <= 1000000) return 12500 + (taxableIncome - 500000) * 0.20;
+      return 112500 + (taxableIncome - 1000000) * 0.30;
     }
   };
 
-  const tax = calculateTax(income, regime);
+  const tax = calculateTax(income, regime, walletDeductions);
   const netIncome = income - tax;
   
   // Estimate investments based on 80C limit
   const maxInvestment = 150000;
-  const suggestedInvestment = Math.min(maxInvestment, income * 0.125); // 12.5% of income
+  const remainingDeduction = Math.max(0, maxInvestment - walletDeductions);
+  const suggestedInvestment = Math.min(remainingDeduction, income * 0.125); // 12.5% of income
 
   // Load income data on mount
   useEffect(() => {
+    if (!userId) return;
     const loadIncome = async () => {
       try {
         setIsLoading(true);
@@ -64,6 +72,7 @@ export const TaxProvider = ({ children }) => {
 
   // Save to backend when income or regime changes
   useEffect(() => {
+    if (!userId) return;
     const saveIncome = async () => {
       try {
         const incomeData = {
@@ -102,6 +111,8 @@ export const TaxProvider = ({ children }) => {
     calculateTax,
     userId,
     isLoading,
+    walletDeductions,
+    setWalletDeductions,
   };
 
   return <TaxContext.Provider value={value}>{children}</TaxContext.Provider>;

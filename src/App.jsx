@@ -8,15 +8,14 @@ import Reports from './pages/Reports';
 import Profile from './pages/Profile';
 import History from './pages/History';
 import AIAssistant from './pages/AIAssistant';
+import TaxWallet from './pages/TaxWallet';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -30,6 +29,7 @@ function App() {
                     <Routes>
                       <Route path="/" element={<Dashboard />} />
                       <Route path="/investments" element={<Investments />} />
+                      <Route path="/tax-wallet" element={<TaxWallet />} />
                       <Route path="/reports" element={<Reports />} />
                       <Route path="/history" element={<History />} />
                       <Route path="/profile" element={<Profile />} />
@@ -43,7 +43,6 @@ function App() {
           } />
         </Routes>
       </Router>
-    </AuthProvider>
   );
 }
 
