@@ -1,7 +1,5 @@
 # TaxEase - Spring Boot Backend
 
-This is a migrated version of TaxEase with **Java Spring Boot backend** and the same **React frontend**.
-
 ## Project Structure
 
 ```
@@ -214,6 +212,3 @@ npm run preview
 - Ensure iText7 dependencies are properly loaded
 - Check file permissions for temp directory
 
-## License
-
-MIT License
