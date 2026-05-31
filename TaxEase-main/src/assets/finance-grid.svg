@@ -1,0 +1,43 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.6">
+    <!-- Grid -->
+    <g stroke="url(#g1)" stroke-width="1">
+      <!-- vertical lines -->
+      <g opacity="0.35">
+        <!-- generated lines -->
+        <path d="M50 0 V800"/>
+        <path d="M150 0 V800"/>
+        <path d="M250 0 V800"/>
+        <path d="M350 0 V800"/>
+        <path d="M450 0 V800"/>
+        <path d="M550 0 V800"/>
+        <path d="M650 0 V800"/>
+        <path d="M750 0 V800"/>
+        <path d="M850 0 V800"/>
+        <path d="M950 0 V800"/>
+        <path d="M1050 0 V800"/>
+        <path d="M1150 0 V800"/>
+      </g>
+      <!-- horizontal lines -->
+      <g opacity="0.35">
+        <path d="M0 50 H1200"/>
+        <path d="M0 150 H1200"/>
+        <path d="M0 250 H1200"/>
+        <path d="M0 350 H1200"/>
+        <path d="M0 450 H1200"/>
+        <path d="M0 550 H1200"/>
+        <path d="M0 650 H1200"/>
+        <path d="M0 750 H1200"/>
+      </g>
+    </g>
+    <!-- Chart polyline overlay -->
+    <polyline points="0,600 100,560 200,580 300,520 400,540 500,480 600,490 700,420 800,460 900,380 1000,420 1100,360 1200,400" fill="none" stroke="#22d3ee" stroke-opacity="0.4" stroke-width="3"/>
+    <polyline points="0,640 100,630 200,640 300,610 400,600 500,570 600,560 700,530 800,520 900,500 1000,480 1100,470 1200,450" fill="none" stroke="#818cf8" stroke-opacity="0.35" stroke-width="3"/>
+  </g>
+</svg>
